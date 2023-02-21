@@ -1,0 +1,169 @@
+.protocol {
+  display: inline-flex;
+  height: 100%;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  overflow: scroll;
+}
+.buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.body {
+  width: 210mm;
+  height: 285mm;
+  color: black;
+  background-color: rgb(255,255,255);
+  --border-style: 1px solid black;
+  font-size: small;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+p {
+  margin: 2px;
+  font-weight: 600;
+}
+/* ЗАГОЛОВОК */
+header {
+  width: 100%;
+  height: 1em;
+  display: grid;
+  grid-template-columns: 35% 30% 35%;
+  grid-template-rows: 100%;
+  align-items: flex-start;
+}
+.header_pump_type {
+  justify-self: stretch;
+  text-align: start;
+}
+.header_title {
+  height: 100%;
+  vertical-align: middle;
+  display: grid;
+  grid-template-columns: 20% auto;
+  grid-template-rows: auto auto;
+  column-gap: 5px;
+  margin-top: 1em;
+}
+.header_title img {
+  width: 100%;
+  height: auto;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+.header_title p {
+  display: inline;
+  font-weight: 800;
+  font-size: 16px;
+  text-align: center;
+  margin: auto;
+}
+.header_test_time {
+  justify-self: stretch;
+  text-align: end;
+}
+/* СОДЕРЖАНИЕ */
+main {
+  width: 100%;
+  flex-grow: 2;
+  font-size: smaller;
+  text-align: left;
+}
+main p {
+  margin-left: 1em;
+}
+.info_block {
+  display: grid;
+  grid-auto-flow: column;
+  text-align: left;
+  margin: 0em 1em;
+  grid-template-columns: 30% 20% 30% 10% 10%;
+  grid-template-rows: repeat(9, auto);
+}
+.test_results {
+  width: 100%;
+  height: 600px;
+  display: flex;
+  flex-direction: row;
+}
+.test_charts {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  width: 100%;
+  height: 300px;
+}
+.test_table {
+  padding: 1em;
+  width: 50%;
+}
+.test_table table {
+  width: 100%;
+  height: auto;
+  border: 2px solid black;
+  border-collapse: collapse;
+  text-align: center;
+}
+.test_table th,
+.test_table tr, 
+.test_table td {
+  border: 1px solid grey;
+}
+.graph_container {
+  width: 100%;
+  height: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px auto;
+  background-color: bisque;
+  border: 1px solid black;
+}
+.result_tables_container {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+}
+.result_table {
+  display: grid;
+  justify-items: stretch;
+  width: 49%;
+  grid-template-rows: repeat(5, auto);
+  grid-template-columns: 200px repeat(2, calc((100% - 200px) / 2));
+  grid-auto-flow: column;
+  border-bottom: var(--border-style);
+  border-right: var(--border-style);
+}
+.result_bottom {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+/* ОСНОВАНИЕ */
+footer {
+  width: 100%;
+  height: 7em;
+  display: flex;
+  flex-direction: row;
+  font-size: smaller;
+}
+.comments {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 1em;
+  margin-left: 1em;
+}
+.signatures {
+  width: 40%;
+  display: grid;
+  grid-template-rows: repeat(2, 50%);
+  grid-template-columns: 50% 50%;
+  grid-auto-flow: column;
+  row-gap: 2em;
+  margin-right: 1em;
+}

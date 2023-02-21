@@ -1,0 +1,53 @@
+{
+  "name": "work-tauri-seal",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.9.0",
+    "@tauri-apps/api": "^1.2.0",
+    "@tauri-apps/cli": "^1.2.1",
+    "cross-env": "^7.0.3",
+    "react": "^18.2.0",
+    "react-devtools": "^4.27.1",
+    "react-dom": "^18.2.0",
+    "react-redux": "8.0.5",
+    "react-scripts": "5.0.1",
+    "react-to-print": "^2.14.10",
+    "react-tracked": "^1.7.10",
+    "recharts": "^2.1.15",
+    "tauri-plugin-fs-extra-api": "github:tauri-apps/tauri-plugin-fs-extra"
+  },
+  "scripts": {
+    "start": "cross-env BROWSER=none react-scripts start",
+    "build": "react-scripts build",
+    "eject": "react-scripts eject",
+    "tauri": "tauri"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browser": {
+    "os": false
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@mui/icons-material": "^5.10.9",
+    "@mui/material": "^5.10.9"
+  }
+}

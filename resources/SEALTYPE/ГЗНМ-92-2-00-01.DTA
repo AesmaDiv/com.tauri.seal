@@ -1,0 +1,11 @@
+                                        _SEAL MFR INFORMATION       	  _C_00_
+ÐÎÑÑÈß                                  _  MANUFACTURER..................._A_15_
+ÃÇÍÌ-92-2-00-01                         _  TYPE OR MODEL OF SEAL.........._A_18_
+03.2013                                 _  DATE OF CURVE MM/DD/YYYY......._A_11_
+2910                                    _  SEAL RPM......................._N_04_
+1653.5                                  _  SEAL MAXTHRUST................._N_04_
+108                                     _  SEAL MAXTEMP..................._N_04_
+0.8546                                  _  SEAL MAXPOWER.................._N_04_
+0                                       _  PRESS UP/DWN YES=1 NO=0........_A_01_
+1                                       _  THRUST YES=1 NO=0.............._A_01_
+0                                       _  ROTATION R=0 L=1 RL=2.........._A_01_
