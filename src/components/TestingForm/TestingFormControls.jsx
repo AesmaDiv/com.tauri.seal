@@ -6,7 +6,7 @@ import DataField from "../DataField/DataField";
 import { updateMessage } from "../MessageBox/MessageBox";
 import { useHardware } from "../../hardware/context";
 import { switchTesting } from "../../redux/testingReducer";
-import { ACTIVE_TEST } from "../../configs/cfg_hardware";
+import { ACTIVE_TEST, POINT_RATE } from "../../configs/cfg_hardware";
 import { resetPoints, addPoint, writePoints } from "../../redux/recordReducer";
 
 import { STYLES as CLS } from "./_styles";

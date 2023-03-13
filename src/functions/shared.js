@@ -10,9 +10,7 @@ export const nextDividingOn = (value, divider) => {
     ) * divider * Math.pow(10, pow);
 
     return val;
-  } else {
-    return 10;
-  }
+  } else return 10;
 }
 /** Получить текущую дату-время */
 export function getCurrentDate() {
@@ -66,3 +64,4 @@ export function extract(obj, keyPath) {
   }
   return obj;
 }
+

@@ -6,9 +6,10 @@ import DataField from "../DataField/DataField";
 import MenuTable from "./MenuTable";
 import FileInput from "../FileInput/FileInput";
 import { switchUpdated } from "../../redux/recordReducer";
-import { extract, assign } from "../../configs/funcs_common";
-import { CONFIG, updateConfig } from "../../configs/cfg_application";
-import { MAINMENU_DATANAMES, RATES, ANALOG, DIGITAL } from "../../configs/cfg_menu";
+import { updateConfig } from "../../functions/config";
+import { extract, assign } from "../../functions/shared";
+import { CONFIG } from "../../configs/cfg_application";
+import { TEST, ANALOG, DIGITAL } from "../../configs/cfg_menu";
 
 
 /** Основное меню приложения */
@@ -36,8 +37,17 @@ export default function MainMenu({open, onClose}) {
           <Box sx={{display: 'grid', gridTemplateColumns: '1fr 1fr', columnGap: '10px', rowGap: '10px' }}>
             <Box sx={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
               <FileInput name='db.path' label='Путь к Базе Данных' defaultPath={extract(CONFIG, 'db.path')}/>
-              <DataField data={{ name: 'adam.ip', label: 'AdamTCP IP', requared: true }} value={extract(CONFIG, 'adam.ip')}/>
-              <MenuTable title='Параметры испытания' table={RATES}/>
+              <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+                <DataField
+                  data={{ name: 'adam.ip', label: 'AdamTCP IP', requared: true }}
+                  value={extract(CONFIG, 'adam.ip')}
+                />
+                <DataField
+                  data={{ name: 'adam.pulling_rate', label: 'Период опроса, мс', requared: true }}
+                  value={extract(CONFIG, 'adam.pulling_rate')}
+                />
+              </Box>
+              <MenuTable title='Параметры испытания' table={TEST}/>
             </Box>
             <Box >
               <MenuTable title='Цифровые' table={DIGITAL}/>
@@ -67,7 +77,7 @@ function getParsedFormData(form) {
 }
 function getParseFuncs() {
   let result = {}
-  Array.from([RATES, ANALOG, DIGITAL]).forEach(el =>
+  Array.from([TEST, ANALOG, DIGITAL]).forEach(el =>
     el.ROWS.forEach(row =>
       el.COLUMNS.forEach(column =>
         result[`${row.name}.${column.name}`] = column.parse_func

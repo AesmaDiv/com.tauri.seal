@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { createContainer } from 'react-tracked';
 
-import { switchTesting } from '../redux/testingReducer';
-import { addPoint } from '../redux/recordReducer';
-import { getHardwareValues } from './communication';
-import * as HWCFG from '../configs/cfg_hardware';
+import { updateHardwareValues } from './communication';
+import { addTestPoint } from './testing_press';
+import { CONFIG } from '../configs/cfg_application';
 
 
 const INITIAL = {
@@ -27,42 +26,28 @@ const INITIAL = {
 }
 /** Провайдер данных с оборудования */
 function HardwareContext() {
-  const dispatch = useDispatch();
   /** состояние опроса оборудования */
   const is_reading  = useSelector(state => state.testingReducer.is_reading);
   /** текущее испытания */
   const active_test = useSelector(state => state.testingReducer.active_test);
   /** данные с оборудования */
   const [hw_values, setValues] = useState(INITIAL);
+  /** период опроса (для выбранного испытания или по умолчанию) */
+  const pulling_rate = CONFIG.test[active_test]?.pulling_rate || CONFIG.adam.pulling_rate;
   
   // Получение данных с оборудования и обновление текущих значений */
   useEffect(() => {
+    // создаём таймер опроса
     let timer = setInterval(() => {
-      // если опрос активен - получаем данные с оборудования
-      is_reading && getHardwareValues(active_test).then(adam_data => {
-        // если данные корректны - обновляем текущие
-        adam_data.analog && setValues(prev => ({...prev, ...adam_data.analog}));
-      });
-    }, HWCFG.PULLING_RATE[active_test]);
+      updateHardwareValues(is_reading, active_test, setValues)
+    }, pulling_rate);
+    // очищаем таймер при выходе, чтоб не утекала память
     return (() => clearInterval(timer));
-  }, [is_reading, active_test]);
+  }, [is_reading, active_test, pulling_rate]);
 
   // Добавление точки в массив активного теста
   useEffect(() => {
-    // если нет активного испытания - выходим
-    if (active_test === HWCFG.ACTIVE_TEST.none) return;
-    // если время или кол-во точек превышено ..
-    if ((hw_values[active_test].time < HWCFG.MAX_TEST_TIME[active_test]) &&
-        (hw_values[active_test].length < HWCFG.MAX_POINTS[active_test])) { 
-      // .. прекращаем испытание и выходим
-      dispatch(switchTesting(HWCFG.ACTIVE_TEST.none));
-      return;
-    }
-    // добавляем точку с указанным интервалом опроса
-    if (!HWCFG.ADD_POINT_RATE.counter++) {
-      dispatch(addPoint({ name: active_test, values: hw_values[active_test] }));
-      HWCFG.ADD_POINT_RATE.counter = HWCFG.ADD_POINT_RATE[active_test];
-    }
+    addTestPoint(active_test, hw_values[active_test]);
   }, [hw_values]);
 
   // console.log("+++ HARDWARE PROVIDER RENDER +++");

@@ -1,19 +1,21 @@
 import { useMemo } from 'react';
-import { ComposedChart, XAxis, YAxis, CartesianGrid, Area } from 'recharts';
+import { ComposedChart, XAxis, YAxis, CartesianGrid, Area, ReferenceDot } from 'recharts';
 import { Legend, ResponsiveContainer } from 'recharts';
 import { useSelector } from 'react-redux';
 
-import { nextDividingOn } from '../../configs/funcs_common';
+import ReferenceCross from './ReferenceCross';
 import { POWER_STYLE } from './_styles';
+import { nextDividingOn } from '../../functions/shared';
 import { COLORS } from '../../configs/cfg_application';
 import { HEADERS_POWER } from '../../configs/cfg_localization';
 import { AXIS_MAX } from '../../configs/cfg_power';
+import { useHardware } from '../../hardware/context';
 
 
 /** График потребляемой мощности */
 export default function PowerConsumptionCharts(props) {
   /** точки */
-  const points =useSelector(state => state.recordReducer.points.test_power);
+  const points = useSelector(state => state.recordReducer.points.test_power);
   /** текущий типоразмер */
   const current_type = useSelector(state => state.recordReducer.current_type);
   /** пределы допуска, зависящие от типоразмера */
@@ -33,6 +35,19 @@ export default function PowerConsumptionCharts(props) {
     color: '#88f888',
     domain: [0, limits.temper],
   }
+  /** текущие значения с оборудования */
+  const hw_values = useHardware();
+  /** текущие значения для маркеров */
+  const current_values = {
+    power: {
+      x: hw_values.test_power.time,
+      y: hw_values.test_power.power
+    },
+    temper: {
+      x: hw_values.test_power.time,
+      y: hw_values.test_power.temper
+    }
+  };
   /** подписи */
   const headers = HEADERS_POWER[!!props.eng];
 
@@ -73,6 +88,9 @@ export default function PowerConsumptionCharts(props) {
         <Area isAnimationActive={params.animation} animationDuration={params.animationDuration}
           dataKey="temper" fillOpacity={1} fill="url(#colorTemper)"
           stroke={COLORS.chart_power_tmp} yAxisId="temper" />
+
+        <ReferenceDot yAxisId="power"  {...current_values.power}  r={20} shape={ReferenceCross} stroke={COLORS.chart_power_pwr}/>
+        <ReferenceDot yAxisId="temper" {...current_values.temper} r={20} shape={ReferenceCross} stroke={COLORS.chart_power_tmp}/>
       </ComposedChart>
     </ResponsiveContainer>
   );

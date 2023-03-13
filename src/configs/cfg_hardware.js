@@ -9,25 +9,16 @@ export const ACTIVE_TEST = Object.freeze({
   test_press: 'test_press',
   test_power: 'test_power',
 });
-/** период опроса оборудования (в мс) */
-export const PULLING_RATE = {
-  [ACTIVE_TEST.none]        : 250,
-  [ACTIVE_TEST.test_press]  : 250,
-  [ACTIVE_TEST.test_power]  : 1000,
-};
 /** период добавления точки (в циклах опроса) */
-export const ADD_POINT_RATE = {
+export const POINT_RATE = {
+  // !!! ВНИМАНИЕ !!! НЕ ИЗМЕНЯТЬ ЗДЕСЬ !!!
+  // значения расчитываются при обновлении настроек приложения
+  // в функции updateConfig
+
+  /** счётчик циклов */
   counter                   : 0,
-  [ACTIVE_TEST.test_press]  : -4,
-  [ACTIVE_TEST.test_power]  : -10,
-};
-/** максимальное время испытания (в сек) */
-export const MAX_TEST_TIME = {
-  [ACTIVE_TEST.test_press]  : 30,
-  [ACTIVE_TEST.test_power]  : 25 * 60,
-};
-/** максимальное кол-во точек */
-export const MAX_POINTS = {
-  [ACTIVE_TEST.test_press]  : 250,
-  [ACTIVE_TEST.test_power]  : 250,
+  /** период добавления точки измерения давления диафгарм */
+  [ACTIVE_TEST.test_press]  : 4,
+  /** пероид добавления точки измерения потребляемой мощности */
+  [ACTIVE_TEST.test_power]  : 240,
 };

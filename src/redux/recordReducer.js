@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
 import { helperReadRecord, helperUpdateRecord, helperDeleteRecord, helperReadSealTypes} from "../database/DatabaseHelper";
 import { getPointsFromRecord, serializePoints} from "../database/db_funcs";
 import { POINTS_STRUCT, SEALTYPE } from "../database/db_models";
-import { roundValue } from "../configs/funcs_common";
+import { roundValue } from "../functions/shared";
 
 
 const INITIAL = {

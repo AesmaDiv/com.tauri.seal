@@ -25,19 +25,3 @@ export const AXIS_MAX = {
   top:  { domain: [0, domain_top],  tickCount: 1 + ~~(domain_top / 0.5) }, // ~~(A / B) - это
   btm:  { domain: [0, domain_btm],  tickCount: 1 + ~~(domain_btm / 0.5) }, // деление без остатка
 };
-/** Добавить информацию о пределах допуска */
-export function addLimits(points) {
-  return [{
-    time: 0,
-    press_top_limit_up: [PRESS_LIMITS.top[1], domain_top],
-    press_top_limit_dw: [0, PRESS_LIMITS.top[0]],
-    press_btm_limit_up: [PRESS_LIMITS.btm[1], domain_btm],
-    press_btm_limit_dw: [0, PRESS_LIMITS.btm[0]],
-  }, ...points, {
-    time: AXIS_MAX.time.domain[1],
-    press_top_limit_up: [PRESS_LIMITS.top[1], domain_top],
-    press_top_limit_dw: [0, PRESS_LIMITS.top[0]],
-    press_btm_limit_up: [PRESS_LIMITS.btm[1], domain_btm],
-    press_btm_limit_dw: [0, PRESS_LIMITS.btm[0]],
-  }];
-}

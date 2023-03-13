@@ -1,5 +1,5 @@
 import { invoke } from '@tauri-apps/api/tauri';
-import { getCurrentDate } from '../configs/funcs_common';
+import { getCurrentDate } from '../functions/shared';
 import { CONFIG } from '../configs/cfg_application';
 
 

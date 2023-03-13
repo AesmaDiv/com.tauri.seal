@@ -1,18 +1,16 @@
-/** Пункты меню приложения */
-export const MAINMENU_DATANAMES = [
-  { name: "db.path",      required: true, label: "Путь к БД"},
-  // { name: "adam.ip",      required: true, label: "Adam5K IP"},
-];
-export const RATES = {
+/** Описание таблицы параметров испытаний */
+export const TEST = {
   ROWS: [
-    { name: "test.press", label: "Давление диафрагм"},
-    { name: "test.power", label: "Потребляемая мощность"},
+    { name: "test.test_press", label: "Давление диафрагм"},
+    { name: "test.test_power", label: "Потребляемая мощность"},
   ],
   COLUMNS: [
     { name: "duration",     label: "T, сек", parse_func: parseInt},
     { name: "pulling_rate", label: "Δt, мс", parse_func: parseInt},
+    { name: "points_count", label: "N, тчк", parse_func: parseInt},
   ],
 };
+/** Описание таблицы параметров аналоговых слотов */
 export const ANALOG = {
   ROWS: [
     { name: 'adam.analog.sys', label: 'Давление в системе' },
@@ -31,6 +29,7 @@ export const ANALOG = {
     { name: 'coeff',   label: 'коэфф.' , parse_func: parseFloat },
   ],
 };
+/** Описание таблицы параметров дискретный слотов */
 export const DIGITAL = {
   ROWS: [
     { name: 'adam.digital.lamp',   label: 'Маяк' },

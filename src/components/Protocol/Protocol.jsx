@@ -5,8 +5,9 @@ import ReactToPrint from "react-to-print";
 import PressureCharts from "../Charts/PressChart";
 import PowerConsumptionCharts from "../Charts/PowerChart";
 
-import { roundValue, decimal2time } from "../../configs/funcs_common";
+import { roundValue, decimal2time } from "../../functions/shared";
 import { HEADERS_PROTOCOL, COMBOS, transliterate } from "../../configs/cfg_localization";
+import { POINTS_MAX as power_points_max } from "../../configs/cfg_power";
 
 import logo from "./logo_epu.png";
 import cls from './Protocol.module.css'
@@ -196,7 +197,8 @@ export default function Protocol() {
 
 const buildPointsTable = (points, headers) => {
   let rows = [];
-  for (let i = 0; i < points.test_power.length; i++) {
+  const points_count = Math.min(points.test_power.length, power_points_max)
+  for (let i = 0; i < points_count; i++) {
     rows.push(
       <tr key={`test_table_row_${i}`}>
         <th scope="row">{i + 1}</th>

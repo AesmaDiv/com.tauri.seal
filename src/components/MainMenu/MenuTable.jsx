@@ -3,7 +3,7 @@ import { Table, TableContainer, TableBody, TableHead, TableRow, TableCell } from
 import { Paper, TextField } from '@mui/material';
 
 import { CONFIG } from '../../configs/cfg_application';
-import { extract } from '../../configs/funcs_common';
+import { extract } from '../../functions/shared';
 
 
 const EditableCell = (props) => {

@@ -1,5 +1,5 @@
 /** Максимальнойе количество точек измерения потребляемой мощности */
-export const POINTS_MAX = 100;
+export const POINTS_MAX = 6;
 /** Свойства для закладки испытания потребляемой мощности*/
 export const PowerProps = {
   NAME: "Power Consumption",
